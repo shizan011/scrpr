@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width:50%;
+        }
+        
+        .logo img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .form-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        form .form-control {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width:96%;
+        }
+        
+        form .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #9b59b6;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        form .btn:hover {
+            background: #8e44ad;
+        }
+        
+        .bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .bubbles .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+            bottom: -150px;
+        }
+        
+        .bubbles .bubble:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 25%;
+            animation-duration: 15s;
+        }
+        
+        .bubbles .bubble:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            left: 10%;
+            animation-duration: 20s;
+        }
+        
+        .bubbles .bubble:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 70%;
+        }
+        
+        .bubbles .bubble:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            left: 50%;
+            animation-duration: 25s;
+        }
+        
+        .bubbles .bubble:nth-child(5) {
+            width: 40px;
+            height: 40px;
+            left: 85%;
+        }
+        
+        @keyframes rise {
+            0% {
+                bottom: -150px;
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+            100% {
+                bottom: 100%;
+                transform: translateX(-20px);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img height="80px" width="120px" src="{% static '1000070395.png' %}" alt="Logo">
+        </div>
+        <div class="form-container">
+            <h1>Login</h1>
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+    </div>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+</body>
+</html>
